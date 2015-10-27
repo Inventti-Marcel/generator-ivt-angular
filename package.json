@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Generator para aplicacoes angular",
   "files": [
-    "app"
+    "app",
+    "templates"
   ],
   "keywords": [
     "yeoman-generator"

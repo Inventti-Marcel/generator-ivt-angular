@@ -1,7 +1,7 @@
 (function (angular) {
     "use strict";
 
-    angular.module('<%= nomeAplicacao %>', [
+    angular.module('<%= nomeAplicacaoTratado %>', [
         'app.modulos',
         'app.componentes'
     ]);
