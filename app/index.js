@@ -40,34 +40,103 @@ module.exports = generators.Base.extend({
 		}.bind(this));
 	},
 
-	copiarTemplatesAplicacao: function () {
-		var nomeAplicacao = this.nomeAplicacao;
-		var nomeAplicacaoTratado = this.nomeAplicacaoTratado;
-		var diretorioAplicacao = this.nomeDiretorioAplicacao;
-
-		this.log('Gerando arquivos da aplicação. Aguarde...');
+	copiarTemplatesIniciaisAplicacao: function () {
 		this.sourceRoot(path.join(__dirname, '../templates/'));
 
 		this.fs.copyTpl(
 	      	this.templatePath('app/app.js'),
-	      	this.destinationPath(path.join(diretorioAplicacao, 'app/app.js')),
-	      	{ nomeAplicacaoTratado: nomeAplicacaoTratado }
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'app/app.js')),
+	      	{ nomeAplicacaoTratado: this.nomeAplicacaoTratado }
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/app.componentes.js'),
-	      	this.destinationPath(path.join(diretorioAplicacao, 'app/app.componentes.js'))
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'app/app.componentes.js'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/app.modulos.js'),
-	      	this.destinationPath(path.join(diretorioAplicacao, 'app/app.modulos.js'))
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'app/app.modulos.js'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/index.html'),
-	      	this.destinationPath(path.join(diretorioAplicacao, 'index.html')),
-	      	{ nomeAplicacao: nomeAplicacao }
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'index.html')),
+	      	{
+	      		nomeAplicacao: this.nomeAplicacao,
+	      		nomeAplicacaoTratado: this.nomeAplicacaoTratado
+	      	}
 	    );
+	},
+
+	copiarBowerJSON: function () {
+		var done = this.async();
+
+		this.prompt({
+			type    : 'input',
+			name    : 'descricaoAplicacao',
+			message : 'Quer definir uma descrição para a aplicação?'
+		}, function (resposta) {
+			this.descricaoAplicacao = resposta.descricaoAplicacao;
+
+			this.prompt({
+				type    : 'input',
+				name    : 'autor',
+				message : 'Autor'
+			}, function (resposta) {
+				this.autor = resposta.autor;
+
+				this.fs.copyTpl(
+			      	this.templatePath('app/bower.json'),
+			      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'bower.json')),
+			      	{
+			      		nomeAplicacaoTratado: this.nomeAplicacaoTratado,
+			      		descricaoAplicacao: this.descricaoAplicacao,
+			      		autor: this.autor
+			      	}
+			    );
+
+				done();
+			}.bind(this));
+		}.bind(this));
+	},
+
+	copiarPackageJSON: function () {
+		this.fs.copyTpl(
+	      	this.templatePath('app/package.json'),
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'package.json')),
+	      	{
+	      		nomeAplicacaoTratado: this.nomeAplicacaoTratado,
+	      		descricaoAplicacao: this.descricaoAplicacao,
+	      		autor: this.autor
+	      	}
+
+	    );
+	},
+
+	copiarArquivosConfiguracao: function () {
+		this.fs.copyTpl(
+	      	this.templatePath('app/bowerrc'),
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, '.bowerrc'))
+	    );
+
+	    this.fs.copyTpl(
+	      	this.templatePath('app/gitignore'),
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, '.gitignore'))
+	    );
+
+	    this.fs.copyTpl(
+	      	this.templatePath('app/config.rb'),
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'config.rb'))
+	    );
+
+	    this.fs.copyTpl(
+	      	this.templatePath('app/Gruntfile.js'),
+	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'Gruntfile.js'))
+	    );
+	},
+
+	finalizandoCriacaoAplicacao: function () {
+		this.log('Aplicação criada. Por favor, execute o seguinte comando: cd ' + this.nomeDiretorioAplicacao + ' && npm start')
 	}
 });

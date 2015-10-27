@@ -1,9 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" data-ng-app="<%= nomeAplicacaoTratado %>">
 <head>
+    <meta charset="UTF-8">
     <title><%= nomeAplicacao %></title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <meta name="theme-color" content="#448aff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="author" content="Inventti Soluções">
+    <meta name="description" content="">
 </head>
 <body>
+    <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
 
+    <!-- Angular -->
+    <script src="assets/vendor/angular/angular.min.js"></script>
+
+    <!-- Aplicação -->
+    <script src="assets/js/main.min.js?v=3"></script>
 </body>
 </html>

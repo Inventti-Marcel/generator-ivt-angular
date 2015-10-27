@@ -1,0 +1,12 @@
+*.crx
+*.pem
+.sass-cache
+.idea
+
+main.min.js
+concatenado.js
+main.js
+node_modules
+assets/vendor
+tmp
+assets/sass/main.css.map

@@ -1,0 +1,23 @@
+{
+  "name": "<%= nomeAplicacaoTratado %>",
+  "version": "0.0.1",
+  "description": "<%= descricaoAplicacao %>",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "prestart": "npm install && bower install",
+    "start": "grunt"
+  },
+  "author": "<%= autor %>",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "main-bower-files": "^2.8.0"
+  },
+  "dependencies": {}
+}

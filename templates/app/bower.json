@@ -1,0 +1,17 @@
+{
+  "name": "<%= nomeAplicacaoTratado %>",
+  "version": "0.0.1",
+  "description": "<%= descricaoAplicacao %>",
+  "authors": [
+    "<%= autor %>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.x"
+  }
+}
