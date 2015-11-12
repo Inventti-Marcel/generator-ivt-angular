@@ -60,8 +60,20 @@ Gruntfile.js <-- Configurações do task runner
 index.html
 package.json <-- Lista de pacotes node instaladados
 ```
+## Considerações
 
-
+1. O que define um módulo?
+    - Um módulo passa a existir quando houver necessidade de isolar um domínio/conceito específico
+2. O que define um componente? 
+    - Um componente é uma funcionalidade que pode flutuar entre os módulos
+3. modulo.config.js
+    - Use este arquivo para definir as rotas dos módulos
+    - Use este arquivo para definir seus services, factories e directives
+    - Os controllers do módulo serão registrados neste arquivo
+4. Css e Sass
+    - Não escreve CSS, escreva sass. O Sass trás muitas facilidades e melhorar o modularização do CSS. Tudo que você escrever em Sass, será compilado para CSS automaticamente pelo task runner.
+5. Bower
+    - O Bower é um gerenciador de dependências para o frontend. Sempre que quiser adicionar uma biblioteca ao projeto, use o bower executando no terminal *"bower install --save nomeDaBiblioteca"* (Este comando deve ser executado no diretório raiz do projeto)
 
 ## Iniciando com o generator
 Bom, antes de começar a usar o generator, você precisa montar um ambiente :D
@@ -77,12 +89,15 @@ Precisamos instalar alguns softwares para montar o ambiente e usar o generator (
 Após instalar o node e o ruby, vá para o terminal para executar alguns comandos. Antes de tudo, verifique se você tem acesso ao git (digite "git") e ao npm (digite npm --version). Estando tudo acessível, digite os seguintes comandos:
 * gem update --system
 * gem install compass
+* npm install -g bower
 * npm install -g grunt-cli
 * npm install -g yo
  
 É isso, ambiente preparado para começarmos!
 
 ### O GENERATOR
+
+#### Aplicação
 Vamos começar criando uma nova aplicação. No terminal digite ***yo ivt-angular***. Algumas perguntas serão feitas a você e, no fim, uma lista com os arquivos criados será apresentada junto com um comando para você executar. Este comando é para navegar até o diretório criado *"cd DiretorioCriado"* e iniciar a aplicação *npm start*. Executando estes comandos, todas as dependências necessárias serão instaladas e o navegador abrirá com a aplicação rodando. Com a aplicação rodando e dependências instaladas, 
 
 #### Módulos
