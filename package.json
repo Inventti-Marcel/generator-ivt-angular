@@ -11,8 +11,12 @@
   ],
   "author": "Marcel Zanluca <marcel@inventti.com.br>",
   "dependencies": {
+    "escodegen": "^1.7.0",
+    "esprima": "^2.7.0",
+    "html-wiring": "^1.2.0",
     "install": "^0.1.8",
     "npm": "^3.3.8",
+    "stringify-object": "^2.3.1",
     "underscore.string": "^3.2.2",
     "welcome-inventti-ascii": "git+ssh://git@github.com/Inventti-Marcel/welcome-inventti-ascii.git",
     "yeoman-generator": "^0.20.3"

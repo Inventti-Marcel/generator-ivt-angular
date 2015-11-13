@@ -18,6 +18,9 @@ module.exports = generators.Base.extend({
 		}, function (resposta) {
 			var nomeDiretorioAplicacao = _.camelize(_.humanize(resposta.appDir));
 			this.nomeDiretorioAplicacao = nomeDiretorioAplicacao;
+			this.destinationRoot(path.join(this.destinationRoot(), '/' + nomeDiretorioAplicacao));
+
+			this.config.save({ "nomeDiretorioAplicacao": nomeDiretorioAplicacao });
 
 			done();
 		}.bind(this));
@@ -45,23 +48,23 @@ module.exports = generators.Base.extend({
 
 		this.fs.copyTpl(
 	      	this.templatePath('app/app.js'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'app/app.js')),
+	      	this.destinationPath(path.join('app/app.js')),
 	      	{ nomeAplicacaoTratado: this.nomeAplicacaoTratado }
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/app.componentes.js'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'app/app.componentes.js'))
+	      	this.destinationPath(path.join('app/app.componentes.js'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/app.modulos.js'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'app/app.modulos.js'))
+	      	this.destinationPath(path.join('app/app.modulos.js'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/index.html'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'index.html')),
+	      	this.destinationPath(path.join('index.html')),
 	      	{
 	      		nomeAplicacao: this.nomeAplicacao,
 	      		nomeAplicacaoTratado: this.nomeAplicacaoTratado
@@ -88,7 +91,7 @@ module.exports = generators.Base.extend({
 
 				this.fs.copyTpl(
 			      	this.templatePath('app/bower.json'),
-			      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'bower.json')),
+			      	this.destinationPath(path.join('bower.json')),
 			      	{
 			      		nomeAplicacaoTratado: this.nomeAplicacaoTratado,
 			      		descricaoAplicacao: this.descricaoAplicacao,
@@ -104,7 +107,7 @@ module.exports = generators.Base.extend({
 	copiarPackageJSON: function () {
 		this.fs.copyTpl(
 	      	this.templatePath('app/package.json'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'package.json')),
+	      	this.destinationPath(path.join('package.json')),
 	      	{
 	      		nomeAplicacaoTratado: this.nomeAplicacaoTratado,
 	      		descricaoAplicacao: this.descricaoAplicacao,
@@ -117,26 +120,26 @@ module.exports = generators.Base.extend({
 	copiarArquivosConfiguracao: function () {
 		this.fs.copyTpl(
 	      	this.templatePath('app/bowerrc'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, '.bowerrc'))
+	      	this.destinationPath(path.join('.bowerrc'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/gitignore'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, '.gitignore'))
+	      	this.destinationPath(path.join('.gitignore'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/config.rb'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'config.rb'))
+	      	this.destinationPath(path.join('config.rb'))
 	    );
 
 	    this.fs.copyTpl(
 	      	this.templatePath('app/Gruntfile.js'),
-	      	this.destinationPath(path.join(this.nomeDiretorioAplicacao, 'Gruntfile.js'))
+	      	this.destinationPath(path.join('Gruntfile.js'))
 	    );
 	},
 
 	finalizandoCriacaoAplicacao: function () {
-		this.log('Aplicação criada. Por favor, execute o seguinte comando: cd ' + this.nomeDiretorioAplicacao + ' && npm start')
+		this.log('--> Aplicação criada. Por favor, execute o seguinte comando: cd ' + this.nomeDiretorioAplicacao + ' && npm start \n');
 	}
 });
